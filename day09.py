@@ -15,6 +15,7 @@ def find_neighbours(row, column):
     return neighbours
 
 s = 0
+lows = []
 for i in range(len(data)):
     for j in range(len(data[i])):
         neighbours = find_neighbours(i, j)
@@ -27,7 +28,15 @@ for i in range(len(data)):
                 pass
         if all(oks):
             s += (data[i][j] + 1)
+            lows.append((i,j))
 print("Part A: " + str(s))
         
 
+# For every point i, j
+# Find closest low point
+# Include i,j to the basin for that low point
+
+basins = []
+for low in lows:
+    pass
 
