@@ -15,10 +15,8 @@ def compute_flashes(grid, flashing_left, flashed):
             c_x, c_y = (o_x + p_x, o_y + p_y)
             if c_x >= 0 and c_y >= 0 and c_x < len(grid[0]) and c_y < len(grid):
                 grid[c_x][c_y] += 1
-                if grid[c_x][c_y] > 9:
-                    if (c_x, c_y) not in flashed:
-                        if (c_x, c_y) not in flashing_left:
-                            flashing_left.append((c_x, c_y))
+                if grid[c_x][c_y] > 9 and ((c_x, c_y) not in flashed) and (c_x, c_y) not in flashing_left:
+                    flashing_left.append((c_x, c_y))
         flashing_left.remove(octopus)
         flashed.append(octopus)
     return compute_flashes(grid, flashing_left, flashed)
@@ -26,6 +24,7 @@ def compute_flashes(grid, flashing_left, flashed):
 flashes = 0
 count = 0
 while(True):
+    count += 1
     # Update
     for i in range(len(grid)):
         for j in range(len(grid[i])):
@@ -44,11 +43,13 @@ while(True):
     for octopus in flashed:
         x, y = octopus
         grid[x][y] = 0
+
+    if count == 100:
+        print(f"Part A: {flashes}")
     
     done = True
     for r in grid:
         done = done and (r == [0]*len(r))
     if done:
-        print(count)
+        print(f"Part B: {count}")
         break
-    count += 1
