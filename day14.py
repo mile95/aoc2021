@@ -4,7 +4,7 @@ with open("input.txt") as f:
     input = f.read().splitlines()
 
 
-STEPS = 40
+STEPS = 10
 
 insertions = dict()
 template = ""
